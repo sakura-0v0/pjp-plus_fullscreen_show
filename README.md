@@ -27,12 +27,6 @@
 - **客户端**：负责生成标签数据（位置、颜色、文字、线条等），并写入固定路径的 JSON 文件。
 - **绘制组件**：作为 Xbox Game Bar Widget 运行，高频读取该 JSON 文件，将其内容转化为 UI 元素并实时渲染。
 
-## 📁 文件结构
-
-- `CanvasPage.xaml / .xaml.cs`：主绘图页面，处理 JSON 解析与 UI 渲染。
-- `DrawProtocol.cs`：定义 `DrawLabelRequest`、`DrawFrameResponse` 等数据契约（用于 JSON 反序列化）。
-- `xbox_elements.json`：通信媒介，存放当前需要绘制的所有标签列表。
-
 ## 🔧 环境要求
 
 - **操作系统**：Windows 10/11（需支持 Xbox Game Bar SDK）
@@ -50,6 +44,7 @@
 
 ### 2. 使用 Python 客户端发送绘图指令
 
+draw_server.py是一个绘制指令服务的示例，你可以参照着使用其他语言编写或者自己实现。
 将提供的 `XboxDrawServer` 类集成到你的 Python 项目中：
 
 ```python
