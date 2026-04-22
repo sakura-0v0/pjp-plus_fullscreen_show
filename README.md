@@ -12,7 +12,7 @@
 
 ## 🧱 工作原理
 
-`
+
 [Python 客户端]                     [UWP 全屏绘制组件]
      │                                    │
      ├─ 更新标签数据                        │
@@ -22,7 +22,7 @@
  (xbox_elements.json)                     │
      │                                    │
      └──────────────► 绘制到 Game Bar 覆盖层 Canvas
-`
+
 
 - **客户端**：负责生成标签数据（位置、颜色、文字、线条等），并写入固定路径的 JSON 文件。
 - **绘制组件**：作为 Xbox Game Bar Widget 运行，高频读取该 JSON 文件，将其内容转化为 UI 元素并实时渲染。
@@ -74,7 +74,7 @@ xbox_draw_server.show_box(
     box=(200, 300, 400, 500),
     color="#00FF00",
     width=3
-)xxxxxxxxxx xbox_draw_server.show_box(    label_id="my_box",    box=(200, 300, 400, 500),    color="#00FF00",    width=3)
+)
 ```
 
 # 在屏幕中心绘制十字准星
@@ -103,6 +103,7 @@ xbox_draw_server.stop()
 
 若需调整标记在屏幕上的整体偏移（例如配合游戏内 UI 偏移），可在 Python 端设置：
 
+
 ```python
 xbox_draw_server.config_app = Config()  # 你的配置对象
 xbox_draw_server.config_app.set("xbox_offset_x", 10)
@@ -111,8 +112,20 @@ xbox_draw_server.config_app.set("xbox_offset_y", -5)
 
 之后所有通过 `set_label` 添加的标签都会自动应用该偏移。
 
-## 📡 通信协议（JSON 格式）
+Config是我做的一个config管理器，你可以简单地定义Config类，或者将draw_server.py中的从配置获取改为你自己的实现方式：
+```python
+class Config:
+    def __init__(self):
+        self.config = {"xbox_offset_x": 0, "xbox_offset_y": 10}
+    def configget(self, key):
+        return self.config[key]
+    def configset(self, key, value):
+        self.config[key] = value
+```
 
+## 📡 通信协议（JSON 格式）
+当你不想使用我提供的draw_server.py进行对接时，你可以自己实现写入json以发送绘制指令。
+json路径："~\AppData\Local\Packages\d7488ba8-6f62-4db1-965c-633de8e74a68_1ywxxbab8r040\TempState"
 绘制组件读取的 JSON 结构如下：
 
 ```json
