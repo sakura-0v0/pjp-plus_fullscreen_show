@@ -183,7 +183,7 @@ json路径："~\AppData\Local\Packages\d7488ba8-6f62-4db1-965c-633de8e74a68_1ywx
 
 ## 📄 许可
 
-本项目基于 MIT 协议开源，欢迎自由使用与二次开发。
+本项目基于 Apache 2.0 License 协议开源，欢迎自由使用与二次开发。
 
 ## 🤝 贡献
 
